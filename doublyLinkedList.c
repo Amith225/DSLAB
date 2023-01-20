@@ -18,8 +18,7 @@ DLL new(DLL prev, int a) {
 }
 
 DLL addFront(DLL dll, int a) {
-        printf("Ele: "); scanf("%d", &a);
-                                dll = addFront(dll, a); break;DLL newDll = new(NULL, a);
+        DLL newDll = new(NULL, a);
         newDll->next = dll;
         return newDll;
 }
@@ -69,10 +68,21 @@ void display(DLL dll) {
         printf("}\n");
 }
 
+int search(DLL dll, int a) {
+    DLL trav = dll;
+    int i = 0;
+    while(trav != NULL) {
+        if(trav->val == a) return i;
+        i++;
+        trav = trav->next;
+    }
+    return -1;
+}
+
 void main() {
         int ch, a;
         DLL dll = NULL;
-        printf("CMDs: add-front(1), add-rear(2), del-front(3), del-rear(4), display(5), exit(0)\n");
+        printf("CMDs: add-front(1), add-rear(2), del-front(3), del-rear(4), display(5), search(6), exit(0)\n");
         while(1) {
                 printf("CMD?> "); scanf("%d", &ch);
                 switch(ch) {
@@ -84,6 +94,8 @@ void main() {
                         case 3: dll = delFront(dll); break;
                         case 4: dll = delRear(dll); break;
                         case 5: display(dll); break;
+                        case 6: printf("Ele: "); scanf("%d", &a);
+                                printf("i: %d\n", search(dll, a)); break;
                         default: printf("Bad CMD\n");
                 }
         }
