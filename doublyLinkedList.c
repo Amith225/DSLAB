@@ -100,3 +100,32 @@ void main() {
                 }
         }
 }
+
+// output: 
+// CMDs: add-front(1), add-rear(2), del-front(3), del-rear(4), display(5), search(6), exit(0)
+// CMD?> 1
+// Ele: 1
+// CMD?> 1
+// Ele: 2
+// CMD?> 2
+// Ele: 3
+// CMD?> 2
+// Ele: 4
+// CMD?> 5
+// {2, 1, 3, 4, }
+// CMD?> 6
+// Ele: 3
+// i: 2
+// CMD?> 3
+// CMD?> 3
+// CMD?> 5
+// {3, 4, }
+// CMD?> 2
+// Ele: 1
+// CMD?> 5
+// {3, 4, 1, }
+// CMD?> 4
+// CMD?> 4
+// CMD?> 5
+// {3, }
+// CMD?> 0
