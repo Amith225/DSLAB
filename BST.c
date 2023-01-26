@@ -44,10 +44,24 @@ void displayLNR(Tree tree) {
     displayLNR(tree->right);
 }
 
+void displayNLR(Tree tree) {
+    if(tree == NULL) return;
+    printf("%d, ", tree->val);
+    displayNLR(tree->left);
+    displayNLR(tree->right);
+}
+
+void displayLRN(Tree tree) {
+    if(tree == NULL) return;
+    displayLRN(tree->left);
+    displayLRN(tree->right);
+    printf("%d, ", tree->val);
+}
+
 void main() {
         int ch, a;
         Tree tree = NULL;
-        printf("CMDs: insert(1), display-lnr(2), exit(0)\n");
+        printf("CMDs: insert(1), display-inorder(2), display-preorder(3), display-postorder(4), exit(0)\n");
         while(1) {
                 printf("CMD?> "); scanf("%d", &ch);
                 switch(ch) {
@@ -55,6 +69,8 @@ void main() {
                         case 1: printf("Ele: "); scanf("%d", &a);
                                 tree = insert(tree, a); break;
                         case 2: displayLNR(tree); printf("\n"); break;
+                        case 3: displayNLR(tree); printf("\n"); break;
+                        case 4: displayLRN(tree); printf("\n"); break;
                         default: printf("Bad CMD\n");
                 }
         }
