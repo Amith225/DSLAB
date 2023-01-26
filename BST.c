@@ -75,3 +75,35 @@ void main() {
                 }
         }
 }
+
+// output:
+// CMDs: insert(1), display-inorder(2), display-preorder(3), display-postorder(4), exit(0)
+// CMD?> 1
+// Ele: 7
+// CMD?> 1
+// Ele: 1
+// CMD?> 1
+// Ele: 0
+// CMD?> 1
+// Ele: 3
+// CMD?> 1
+// Ele: 2
+// CMD?> 1
+// Ele: 5
+// CMD?> 1
+// Ele: 4
+// CMD?> 1
+// Ele: 6
+// CMD?> 1
+// Ele: 9
+// CMD?> 1
+// Ele: 8
+// CMD?> 1
+// Ele: 10
+// CMD?> 2
+// 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 
+// CMD?> 3
+// 7, 1, 0, 3, 2, 5, 4, 6, 9, 8, 10, 
+// CMD?> 4
+// 0, 2, 4, 6, 5, 3, 1, 8, 10, 9, 7, 
+// CMD?> 
