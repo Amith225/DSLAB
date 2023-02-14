@@ -37,6 +37,42 @@ Tree insert(Tree tree, int a) {
     return tree;
 }
 
+Tree minValueNode(Tree tree) {
+    Tree trav = tree;
+    while(trav != NULL && trav->left != NULL) {
+        trav = trav->left;
+    }
+    return trav;
+}
+
+Tree deleteNode(Tree tree, int a) {
+    if (tree == NULL) return tree;
+
+    if (a < tree->val)
+        tree->left = deleteNode(tree->left, a);
+    else if (a > tree->val)
+        tree->right = deleteNode(tree->right, a);
+    else {
+        // zero or single child
+        if (tree->left == NULL) {
+            Tree temp = tree->right;
+            free(tree);
+            return temp;
+        }
+        else if (tree->right == NULL) {
+            Tree temp = tree->left;
+            free(tree);
+            return temp;
+        }
+ 
+        // two children
+        Tree temp = minValueNode(tree->right);
+        tree->val = temp->val;
+        tree->right = deleteNode(tree->right, temp->val);
+    }
+    return tree;
+}
+
 void displayLNR(Tree tree) {
     if(tree == NULL) return;
     displayLNR(tree->left);
@@ -61,7 +97,7 @@ void displayLRN(Tree tree) {
 void main() {
         int ch, a;
         Tree tree = NULL;
-        printf("CMDs: insert(1), display-inorder(2), display-preorder(3), display-postorder(4), exit(0)\n");
+        printf("CMDs: insert(1), display-inorder(2), display-preorder(3), display-postorder(4), del(5), exit(0)\n");
         while(1) {
                 printf("CMD?> "); scanf("%d", &ch);
                 switch(ch) {
@@ -71,12 +107,14 @@ void main() {
                         case 2: displayLNR(tree); printf("\n"); break;
                         case 3: displayNLR(tree); printf("\n"); break;
                         case 4: displayLRN(tree); printf("\n"); break;
+                        case 5: printf("Ele: "); scanf("%d", &a);
+                                tree = deleteNode(tree, a); break;
                         default: printf("Bad CMD\n");
                 }
         }
 }
 
-// output:
+// output(old, dosent include deleteNode):
 // CMDs: insert(1), display-inorder(2), display-preorder(3), display-postorder(4), exit(0)
 // CMD?> 1
 // Ele: 7
